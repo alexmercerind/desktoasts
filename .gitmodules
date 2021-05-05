@@ -1,0 +1,3 @@
+[submodule "desktoasts/WinToast"]
+	path = desktoasts/WinToast
+	url = https://github.com/mohabouje/WinToast
