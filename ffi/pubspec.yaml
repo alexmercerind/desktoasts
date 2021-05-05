@@ -4,7 +4,7 @@ version: 1.0.0
 homepage: https://github.com/alexmercerind/wintoast.dart
 
 environment:
-  sdk: '>=2.10.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   path: ^1.7.0
