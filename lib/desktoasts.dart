@@ -25,10 +25,10 @@
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
-
-import 'package:wintoast/src/abstractions.dart';
 import 'package:path/path.dart' as path;
-import 'package:wintoast/src/dynamic_library.dart';
+
+import 'package:desktoasts/src/abstractions.dart';
+import 'package:desktoasts/src/dynamic_library.dart';
 
 
 extension on List<String> {
@@ -121,7 +121,7 @@ class ToastService {
     }) {
     List<String> executableDirectory = Platform.resolvedExecutable.split('/')..removeLast();
     CallbackFFI.initialize(
-      DynamicLibrary.open(path.joinAll(executableDirectory + ['wintoast_dart.dll']))
+      DynamicLibrary.open(path.joinAll(executableDirectory + ['desktoasts.dll']))
     );
     print(dynamicLibrary);
     ToastServiceFFI.create(
