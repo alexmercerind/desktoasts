@@ -1,8 +1,8 @@
 import 'dart:ffi';
 import 'dart:isolate';
 
-import 'package:wintoast_ffi/src/dynamic_library.dart';
-import 'package:wintoast_ffi/src/typedefs.dart';
+import 'package:desktoasts_ffi/src/dynamic_library.dart';
+import 'package:desktoasts_ffi/src/typedefs.dart';
 
 
 ReceivePort receiver = new ReceivePort();

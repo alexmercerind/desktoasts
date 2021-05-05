@@ -27,8 +27,8 @@
 #include "WinToast/src/wintoastlib.cpp"
 #include "callback_manager.hpp"
 
-#ifndef WINTOAST_DART_HEADER
-#define WINTOAST_DART_HEADER
+#ifndef DESKTOASTS_HEADER
+#define DESKTOASTS_HEADER
 
 
 using namespace WinToastLib;

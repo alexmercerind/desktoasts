@@ -2,7 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
 
-import 'package:wintoast_ffi/wintoast_ffi.dart';
+import 'package:desktoasts_ffi/desktoasts_ffi.dart';
 import 'package:path/path.dart' as path;
 
 

@@ -22,4 +22,54 @@
  * SOFTWARE.
 */
 
-export 'package:wintoast_ffi/src/abstractions.dart';
+#include "desktoasts.hpp"
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+ToastService* service = nullptr;
+std::vector<Toast*> toasts;
+
+EXPORT void ToastService_create(const char** data) {
+    if (service == nullptr)
+        service = new ToastService(data[0], data[1], data[2], data[3], data[4]);
+}
+
+EXPORT void ToastService_show(int id) {
+    if (service != nullptr && toasts[id] != nullptr)
+        service->show(toasts[id]);
+}
+
+EXPORT void ToastService_dispose() {
+    if (service != nullptr) {
+        service->dispose();
+        service = nullptr;
+    }
+}
+
+EXPORT int Toast_create(const char** data, int length) {
+    std::vector<std::string> actions;
+    for (int index = 4; index < length; index++) {
+        actions.emplace_back(data[index]);
+    }
+    Toast* toast = new Toast(
+        atoi(data[0]),
+        data[1],
+        data[2],
+        data[3],
+        actions
+    );
+    toasts.emplace_back(toast);
+    return toasts.size() - 1;
+}
+
+EXPORT void Toast_dispose(int id) {
+    delete toasts[id];
+    toasts[id] = nullptr;
+}
+
+#ifdef __cplusplus
+}
+#endif

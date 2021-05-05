@@ -1,7 +1,7 @@
-name: wintoast_ffi
-description: FFI counterpart of wintoasts.dart.
+name: desktoasts_ffi
+description: FFI counterpart of desktoasts.
 version: 1.0.0
-homepage: https://github.com/alexmercerind/wintoast.dart
+homepage: https://github.com/alexmercerind/desktoasts
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

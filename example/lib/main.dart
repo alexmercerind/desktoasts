@@ -23,17 +23,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() { 
-    super.initState();
-    Toast toast = new Toast(
-      type: ToastType.imageAndText02,
-      title: 'Hello World!',
-      subtitle: 'This toast is sent by wintoast.dart',
-      image: new File('C:/Windows/Web/Screen/img100.jpg')
-    );
-    service?.show(toast);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +32,74 @@ class _MyAppState extends State<MyApp> {
           title: Text('wintoast.dart'),
           centerTitle: true,
         ),
-        body: Center(),
+        body: ListView(
+          padding: EdgeInsets.all(32.0),
+          children: [
+            Container(
+              height: 56.0,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text('A toast with a subtitle.'),
+                  ),
+                  ElevatedButton(onPressed: () {
+                    Toast toast = new Toast(
+                      type: ToastType.text02,
+                      title: 'Hello World!',
+                      subtitle: 'This toast contains a subtitle.',
+                    );
+                    service?.show(toast);
+                    toast.dispose();
+                  }, child: Text('Show'))
+                ],
+              ),
+            ),
+            Container(
+              height: 56.0,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text('A toast with an image.'),
+                  ),
+                  ElevatedButton(onPressed: () {
+                    Toast toast = new Toast(
+                      type: ToastType.imageAndText02,
+                      title: 'Hello World!',
+                      subtitle: 'This toast contains an image.',
+                      image: new File('C:/Windows/Web/Screen/img100.jpg')
+                    );
+                    service?.show(toast);
+                    toast.dispose();
+                  }, child: Text('Show'))
+                ],
+              ),
+            ),
+            Container(
+              height: 56.0,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text('A toast with actions.'),
+                  ),
+                  ElevatedButton(onPressed: () {
+                    Toast toast = new Toast(
+                      type: ToastType.imageAndText02,
+                      title: 'Hello World!',
+                      subtitle: 'This toast contains actions in it.',
+                      image: new File('C:/Windows/Web/Screen/img100.jpg'),
+                      actions: [
+                        'Accept',
+                        'Decline',
+                      ]
+                    );
+                    service?.show(toast);
+                    toast.dispose();
+                  }, child: Text('Show'))
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

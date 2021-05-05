@@ -68,7 +68,7 @@ class Toast {
   /// Title of [Toast].
   final String title;
   /// Subtitle of the [Toast].
-  final String subtitle;
+  final String? subtitle;
   /// Image [File] to show inside the [Toast].
   final File? image;
   /// [List] of actions to be shown on the [Toast].
@@ -79,14 +79,14 @@ class Toast {
   Toast({
     required this.type,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
     this.image,
     this.actions,
   }) {
     List<String> data = [
       this.type.index.toString(),
       this.title,
-      this.subtitle,
+      this.subtitle ?? '',
       this.image?.path ?? ''
     ]..addAll(actions ?? []);
     this.id = ToastFFI.create(
