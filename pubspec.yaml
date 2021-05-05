@@ -1,7 +1,7 @@
-name: wintoast
+name: desktoasts
 description: A plugin to show native toasts on Windows.
 version: 0.0.1
-homepage: https://github.com/alexmercerind/wintoast.dart
+homepage: https://github.com/alexmercerind/desktoasts
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -21,4 +21,4 @@ flutter:
   plugin:
     platforms:
       windows:
-        pluginClass: WintoastPlugin
+        pluginClass: DesktoastsPlugin
