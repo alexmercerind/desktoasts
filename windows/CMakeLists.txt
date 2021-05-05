@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 set(PROJECT_NAME "wintoast")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
-# This value is used when generating builds using this plugin, so it must
-# not be changed
 set(PLUGIN_NAME "wintoast_plugin")
 
 add_library(${PLUGIN_NAME} SHARED
@@ -17,8 +15,7 @@ target_include_directories(${PLUGIN_NAME} INTERFACE
   "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin)
 
-# List of absolute paths to libraries that should be bundled with the plugin
 set(wintoast_bundled_libraries
-  ""
+  "${CMAKE_CURRENT_SOURCE_DIR}/wintoast_dart.dll"
   PARENT_SCOPE
 )
