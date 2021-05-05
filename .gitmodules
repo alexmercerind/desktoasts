@@ -1,0 +1,3 @@
+[submodule "ffi/source/WinToast"]
+	path = ffi/source/WinToast
+	url = https://github.com/mohabouje/WinToast.git
