@@ -4,13 +4,17 @@
 
 ## Installation
 
-##### For Flutter
+#### For Flutter
 
 ```yaml
 dependencies:
   ...
   desktoasts: ^0.0.1
 ```
+
+#### For Dart CLI
+
+[here](https://github.com/alexmercerind/desktoasts#cli)
 
 ## Documentation
 
@@ -87,13 +91,25 @@ service?.show(toast
 - Large image toasts.
 - Linux support.
 
+## CLI
+
+Currently only Flutter plugin is published to the [pub.dev](https://pub.dev).
+
+For sending toasts from Dart console apps, you may do as follows for now.
+
+```bash
+git clone https://github.com/alexmercerind/desktoasts.git
+cd desktoasts/cli/example
+dart main.dart
+```
+
 ## Workings
 
 Although, this might seem like a Flutter plugin, but this is internally based on FFI instead. 
 
-[This](https://github.com/alexmercerind/desktoasts/tree/master/ffi/source) section of the repository, contains C++ code that I compile to a shared library (which both Dart package & Flutter plugin pack along with them) for sending toasts.
+[This](https://github.com/alexmercerind/desktoasts/tree/master/desktoasts) section of the repository, contains C++ code that I compile to a shared library (which both Dart package & Flutter plugin pack along with them) for sending toasts.
 
-Currently, features are limited. I plan to improve upon this.
+Currently, features are limited. I definitely plan to improve upon this.
 
 ## License
 
