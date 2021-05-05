@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
-set(PROJECT_NAME "wintoast")
+set(PROJECT_NAME "desktoasts")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
-set(PLUGIN_NAME "wintoast_plugin")
+set(PLUGIN_NAME "desktoasts_plugin")
 
 add_library(${PLUGIN_NAME} SHARED
-  "wintoast_plugin.cpp"
+  "desktoasts_plugin.cpp"
 )
 apply_standard_settings(${PLUGIN_NAME})
 set_target_properties(${PLUGIN_NAME} PROPERTIES
@@ -15,7 +15,7 @@ target_include_directories(${PLUGIN_NAME} INTERFACE
   "${CMAKE_CURRENT_SOURCE_DIR}/include")
 target_link_libraries(${PLUGIN_NAME} PRIVATE flutter flutter_wrapper_plugin)
 
-set(wintoast_bundled_libraries
-  "${CMAKE_CURRENT_SOURCE_DIR}/wintoast_dart.dll"
+set(desktoasts_bundled_libraries
+  "${CMAKE_CURRENT_SOURCE_DIR}/desktoasts.dll"
   PARENT_SCOPE
 )
