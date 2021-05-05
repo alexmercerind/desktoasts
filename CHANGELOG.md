@@ -1,3 +1,6 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- Initial release.
+- Added simple toasts.
+- Added toasts with image.
+- Added toasts with actions.
