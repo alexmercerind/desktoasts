@@ -1,16 +1,16 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
-import 'package:wintoast/wintoast.dart';
+import 'package:desktoasts/desktoasts.dart';
 
 
 ToastService? service;
 
 void main() {
   service = new ToastService(
-    appName: 'wintoast.dart',
+    appName: 'desktoasts',
     companyName: 'alexmercerind',
-    productName: 'wintoast_example',
+    productName: 'desktoasts_example',
   );
   runApp(MyApp());
 }
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('wintoast.dart'),
+          title: Text('desktoasts'),
           centerTitle: true,
         ),
         body: ListView(

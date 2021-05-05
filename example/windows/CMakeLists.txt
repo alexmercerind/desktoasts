@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(wintoast_example LANGUAGES CXX)
+project(desktoasts_example LANGUAGES CXX)
 
-set(BINARY_NAME "wintoast_example")
+set(BINARY_NAME "desktoasts_example")
 
 cmake_policy(SET CMP0063 NEW)
 

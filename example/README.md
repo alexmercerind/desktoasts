@@ -1,6 +1,6 @@
-# wintoast_example
+# desktoasts_example
 
-Demonstrates how to use the wintoast plugin.
+Demonstrates how to use the desktoasts plugin.
 
 ## Getting Started
 

@@ -6,9 +6,9 @@
 
 #include "generated_plugin_registrant.h"
 
-#include <wintoast/wintoast_plugin.h>
+#include <desktoasts/desktoasts_plugin.h>
 
 void RegisterPlugins(flutter::PluginRegistry* registry) {
-  WintoastPluginRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("WintoastPlugin"));
+  DesktoastsPluginRegisterWithRegistrar(
+      registry->GetRegistrarForPlugin("DesktoastsPlugin"));
 }
