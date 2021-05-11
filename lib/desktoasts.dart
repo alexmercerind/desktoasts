@@ -32,9 +32,9 @@ import 'package:desktoasts/src/dynamic_library.dart';
 
 
 extension on List<String> {
-  Pointer<Pointer<Utf8>> toNativeUtf8Array() {
-    final List<Pointer<Utf8>> listPointer = this.map((String string) => string.toNativeUtf8()).toList().cast<Pointer<Utf8>>();
-    final Pointer<Pointer<Utf8>> pointerPointer = calloc.allocate(this.join('').length);
+  Pointer<Pointer<Utf16>> toNativeUtf16Array() {
+    final List<Pointer<Utf16>> listPointer = this.map((String string) => string.toNativeUtf16()).toList().cast<Pointer<Utf16>>();
+    final Pointer<Pointer<Utf16>> pointerPointer = calloc.allocate(this.join('').length);
     for (int index = 0; index < this.length; index++) pointerPointer[index] = listPointer[index];
     return pointerPointer;
   }
@@ -90,7 +90,7 @@ class Toast {
       this.image?.path ?? ''
     ]..addAll(actions ?? []);
     this.id = ToastFFI.create(
-      data.toNativeUtf8Array(),
+      data.toNativeUtf16Array(),
       data.length,
     );
   }
@@ -131,7 +131,7 @@ class ToastService {
         this.productName,
         this.subProductName ?? '',
         this.versionInformation ?? '',
-      ].toNativeUtf8Array()
+      ].toNativeUtf16Array()
     );
   }
 

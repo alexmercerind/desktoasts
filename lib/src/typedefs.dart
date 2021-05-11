@@ -8,8 +8,8 @@ typedef RegisterPostCObjectDart = void Function(Pointer<NativeFunction<Int8 Func
 typedef RegisterCallbackPortCXX = Void Function(Int64 nativePort);
 typedef RegisterCallbackPortDart = void Function(int nativePort);
 
-typedef ToastServiceCreateCXX = Void Function(Pointer<Pointer<Utf8>>);
-typedef ToastServiceCreateDart = void Function(Pointer<Pointer<Utf8>>);
+typedef ToastServiceCreateCXX = Void Function(Pointer<Pointer<Utf16>>);
+typedef ToastServiceCreateDart = void Function(Pointer<Pointer<Utf16>>);
 
 typedef ToastServiceShowCXX = Void Function(Int32);
 typedef ToastServiceShowDart = void Function(int);
@@ -17,8 +17,8 @@ typedef ToastServiceShowDart = void Function(int);
 typedef ToastServiceDisposeCXX = Void Function();
 typedef ToastServiceDisposeDart = void Function();
 
-typedef ToastCreateCXX = Int32 Function(Pointer<Pointer<Utf8>>, Int32);
-typedef ToastCreateDart = int Function(Pointer<Pointer<Utf8>>, int);
+typedef ToastCreateCXX = Int32 Function(Pointer<Pointer<Utf16>>, Int32);
+typedef ToastCreateDart = int Function(Pointer<Pointer<Utf16>>, int);
 
 typedef ToastDisposeCXX = Void Function(Int32);
 typedef ToastDisposeDart = void Function(int);
