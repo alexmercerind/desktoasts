@@ -1,3 +1,7 @@
+## 0.0.2
+
+- Now using `wchar_t` strings instead of `char`.
+
 ## 0.0.1
 
 - Initial release.
