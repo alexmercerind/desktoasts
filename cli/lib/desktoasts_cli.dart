@@ -22,13 +22,13 @@
  * SOFTWARE.
 */
 
+import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'package:path/path.dart' as path;
 
 import 'package:desktoasts_cli/src/abstractions.dart';
-import 'package:desktoasts_cli/src/dynamic_library.dart';
 
 
 extension on List<String> {
@@ -39,6 +39,27 @@ extension on List<String> {
     return pointerPointer;
   }
 }
+
+
+/// Declares an event type related to a [Toast].
+class ToastEvent {}
+
+
+/// Event occuring upon clicking the toast.
+class ToastActivated extends ToastEvent {}
+
+
+/// Event occuring upon clicking any of actions in the toast.
+class ToastInteracted extends ToastEvent {
+  /// Index of the action in the Toast.
+  late int? action;
+  ToastInteracted({required this.action});
+}
+
+
+/// Event occuring upon dismissing the toast.
+class ToastDismissed extends ToastEvent {}
+
 
 /// Declares the type of [Toast].
 enum ToastType {
@@ -100,6 +121,7 @@ class Toast {
 }
 
 
+/// Setups a service for sending [Toast].
 class ToastService {
   /// Name of the application.
   final String appName;
@@ -111,6 +133,8 @@ class ToastService {
   final String? subProductName;
   /// (Optional) Version information.
   final String? versionInformation;
+  /// Stream yeilding events on the [Toast].
+  late Stream<ToastEvent> stream;
 
   ToastService({
     required this.appName,
@@ -123,7 +147,6 @@ class ToastService {
     CallbackFFI.initialize(
       DynamicLibrary.open(path.joinAll(scriptDirectory + ['..', 'desktoasts.dll']))
     );
-    print(dynamicLibrary);
     ToastServiceFFI.create(
       [
         this.appName,
@@ -133,12 +156,39 @@ class ToastService {
         this.versionInformation ?? '',
       ].toNativeUtf16Array()
     );
+    this._streamController = new StreamController<ToastEvent>.broadcast();
+    this.stream = this._streamController.stream;
+    receiver.listen((dynamic message) {
+      List<String> response = (message as List<dynamic>).cast<String>();
+      switch (response[0]) {
+        case 'activateEvent': {
+          _streamController.add(new ToastActivated());
+          break;
+        }
+        case 'interactEvent': {
+          _streamController.add(new ToastInteracted(
+            action: int.tryParse(response[1]),
+          ));
+          break;
+        }
+        case 'dismissEvent': {
+          _streamController.add(new ToastDismissed());
+          break;
+        }
+        default: break;
+      }
+    });
   }
 
   /// Shows a [Toast] on the desktop.
   void show(Toast toast) => ToastServiceFFI.show(toast.id);
 
   /// Releases resources allocated to the instance of [ToastService].
-  void dispose() => ToastServiceFFI.dispose();
-}
+  void dispose() {
+    ToastServiceFFI.dispose();
+    this._streamController.close();
+  }
 
+  /// Internally used [StreamController] for event handling.
+  late StreamController<ToastEvent> _streamController;
+}
