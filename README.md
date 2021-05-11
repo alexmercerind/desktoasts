@@ -1,5 +1,5 @@
 <h1 align="center"><a href="https://github.com/alexmercerind/desktoasts">desktoasts</a></h1>
-<h4 align="center">A Dart package to send native :speech_balloon: toasts on Windows.</h4>
+<h4 align="center">A Dart package to send native 💬 toasts on Windows.</h4>
 
 
 ## Installation
@@ -9,16 +9,20 @@
 ```yaml
 dependencies:
   ...
-  desktoasts: ^0.0.1
+  desktoasts: ^0.0.2
 ```
 
 #### For Dart CLI
 
 [here](https://github.com/alexmercerind/desktoasts#cli)
 
+## Support
+
+<a href="https://www.buymeacoffee.com/alexmercerind"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=alexmercerind&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+
 ## Documentation
 
-##### Initialize the toasts service.
+#### Initialize the toasts service.
 
 ```dart
 ToastService? service;
@@ -73,7 +77,23 @@ Toast toast = new Toast(
     'Decline',
   ]
 );
-service?.show(toast
+service?.show(toast);
+```
+
+#### Handling events
+
+```dart
+service?.stream.listen((event) {
+  if (event is ToastDismissed) {
+    print('Toast was dismissed.');
+  }
+  if (event is ToastActivated) {
+    print('Toast was clicked.');
+  }
+  if (event is ToastInteracted) {
+    print('${event.action} action in the toast was clicked.');
+  }
+});
 ```
 
 <img src="https://github.com/alexmercerind/desktoasts/blob/assets/Capture03.PNG?raw=true" height="256"></img>
@@ -84,9 +104,10 @@ service?.show(toast
 - Simple toasts.
 - Toasts with image.
 - Toasts with actions.
+- UTF16 text in toasts.
+- Event handling.
 
 ##### Yet to be done.
-- Event handling.
 - Progress bar toasts.
 - Large image toasts.
 - Linux support.
