@@ -27,17 +27,12 @@
 #include "WinToast/src/wintoastlib.cpp"
 #include "callback_manager.hpp"
 
+#define UNICODE
 #ifndef DESKTOASTS_HEADER
 #define DESKTOASTS_HEADER
 
 
 using namespace WinToastLib;
-
-
-template <typename FROM, typename TO>
-TO convert(FROM string) {
-    return TO(string.begin(), string.end());
-}
 
 
 class ToastServiceHandler: public IWinToastHandler {
@@ -69,36 +64,28 @@ class ToastServiceHandler: public IWinToastHandler {
 
 class Toast {
 public:
-    std::string image;
-    std::string title;
-    std::string subtitle;
+    std::wstring image;
+    std::wstring title;
+    std::wstring subtitle;
 
     friend class ToastService;
     
-    Toast(int type, std::string title, std::string subtitle = "", std::string image = "", std::vector<std::string> actions = {}) {
+    Toast(int type, std::wstring title, std::wstring subtitle = L"", std::wstring image = L"", std::vector<std::wstring> actions = {}) {
         this->image = image;
         this->title = title;
         this->subtitle = subtitle;
         this->toastTemplate = new WinToastTemplate(
             static_cast<WinToastTemplate::WinToastTemplateType>(type)
         );
-        if (title != "")
-            this->toastTemplate->setFirstLine(
-                convert<std::string, std::wstring>(title)
-            );
-        if (subtitle != "")
-            this->toastTemplate->setSecondLine(
-                convert<std::string, std::wstring>(subtitle)
-            );
-        if (image != "")
-            this->toastTemplate->setImagePath(
-                convert<std::string, std::wstring>(image)
-            );
+        if (title != L"")
+            this->toastTemplate->setFirstLine(title);
+        if (subtitle != L"")
+            this->toastTemplate->setSecondLine(subtitle);
+        if (image != L"")
+            this->toastTemplate->setImagePath(image);
         if (actions.size() != 0)
-            for (std::string &action: actions)
-                this->toastTemplate->addAction(
-                    convert<std::string, std::wstring>(action)
-                );
+            for (std::wstring &action: actions)
+                this->toastTemplate->addAction(action);
     }
 
     ~Toast() {
@@ -117,14 +104,14 @@ private:
 class ToastService {
 public:
 
-    ToastService(std::string appName, std::string companyName, std::string productName, std::string subProductName = "", std::string versionInformation = "") {
+    ToastService(std::wstring appName, std::wstring companyName, std::wstring productName, std::wstring subProductName = L"", std::wstring versionInformation = L"") {
         handler = new ToastServiceHandler();
-        WinToast::instance()->setAppName(convert<std::string, std::wstring>(appName));
+        WinToast::instance()->setAppName(appName);
         std::wstring aumi = WinToast::configureAUMI(
-            convert<std::string, std::wstring>(companyName),
-            convert<std::string, std::wstring>(productName),
-            convert<std::string, std::wstring>(subProductName),
-            convert<std::string, std::wstring>(versionInformation)
+            companyName,
+            productName,
+            subProductName,
+            versionInformation
         );
         WinToast::instance()->setAppUserModelId(aumi);
         WinToast::instance()->initialize();

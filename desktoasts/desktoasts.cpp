@@ -22,6 +22,8 @@
  * SOFTWARE.
 */
 
+#include <comdef.h>
+
 #include "desktoasts.hpp"
 
 
@@ -32,7 +34,7 @@ extern "C" {
 ToastService* service = nullptr;
 std::vector<Toast*> toasts;
 
-EXPORT void ToastService_create(const char** data) {
+EXPORT void ToastService_create(const wchar_t** data) {
     if (service == nullptr)
         service = new ToastService(data[0], data[1], data[2], data[3], data[4]);
 }
@@ -49,13 +51,15 @@ EXPORT void ToastService_dispose() {
     }
 }
 
-EXPORT int Toast_create(const char** data, int length) {
-    std::vector<std::string> actions;
+EXPORT int Toast_create(const wchar_t** data, int length) {
+    std::vector<std::wstring> actions;
     for (int index = 4; index < length; index++) {
         actions.emplace_back(data[index]);
     }
+    _bstr_t type(data[0]);
+    const char* _type = type;
     Toast* toast = new Toast(
-        atoi(data[0]),
+        atoi(_type),
         data[1],
         data[2],
         data[3],
