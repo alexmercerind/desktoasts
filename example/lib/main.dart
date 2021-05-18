@@ -49,7 +49,6 @@ class _MyAppState extends State<MyApp> {
                       subtitle: 'This toast contains a subtitle.',
                     );
                     service?.show(toast);
-                    toast.dispose();
                   }, child: Text('Show'))
                 ],
               ),
@@ -69,7 +68,6 @@ class _MyAppState extends State<MyApp> {
                       image: new File('C:/Windows/Web/Screen/img100.jpg')
                     );
                     service?.show(toast);
-                    toast.dispose();
                   }, child: Text('Show'))
                 ],
               ),
@@ -93,7 +91,6 @@ class _MyAppState extends State<MyApp> {
                       ]
                     );
                     service?.show(toast);
-                    toast.dispose();
                   }, child: Text('Show'))
                 ],
               ),
