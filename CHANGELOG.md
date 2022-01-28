@@ -1,3 +1,7 @@
+## 0.0.3
+
+- Mark as discontinued.
+
 ## 0.0.2
 
 - Now using `wchar_t` strings instead of `char`.

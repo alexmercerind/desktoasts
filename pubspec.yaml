@@ -1,6 +1,6 @@
 name: desktoasts
 description: A plugin to show native toasts on Windows.
-version: 0.0.2
+version: 0.0.3
 homepage: https://github.com/alexmercerind/desktoasts
 
 environment:
